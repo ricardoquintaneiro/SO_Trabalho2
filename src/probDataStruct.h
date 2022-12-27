@@ -53,9 +53,9 @@ typedef struct
     /** \brief flag of payment request from client to waiter */
     int paymentRequest;
 
-    /** \brief id of first client to arrive */
-    int tableLast;
     /** \brief id of last client to arrive */
+    int tableLast;
+    /** \brief id of first client to arrive */
     int tableFirst;
 
 } FULL_STAT;

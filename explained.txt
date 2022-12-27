@@ -1,0 +1,14 @@
+O primeiro cliente do grupo a chegar faz o pedido.
+
+    O restaurante tem só 1 empregado e só 1 cozinheiro.
+
+    O empregado de mesa deve levar o pedido ao cozinheiro e trazer a comida para a mesa quando esta estiver pronta.
+
+    No final,
+    os amigos apenas devem abandonar
+        a mesa depois de todos terminarem de comer,
+
+    o último a chegar ao restaurante tem a
+        responsabilidade de pagar a conta
+
+            O tamanho da mesa está ajustado ao número de amigos
