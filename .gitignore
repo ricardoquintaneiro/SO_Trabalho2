@@ -50,3 +50,7 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+run/chef
+run/client
+run/probSemSharedMemRestaurant
+run/waiter
