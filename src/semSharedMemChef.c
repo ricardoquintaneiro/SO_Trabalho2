@@ -117,19 +117,21 @@ static void waitForOrder ()
 {
     /* insert your code here */
     if (semDown (semgid, sh->waitOrder) == -1) {
-        perror ("error on the up operation for semaphore access (PT)");
+        perror ("error on the down operation for semaphore access (PT)");
         exit (EXIT_FAILURE);
     }
+    /*                        */
     
     if (semDown (semgid, sh->mutex) == -1) {                                                      /* enter critical region */
-        perror ("error on the up operation for semaphore access (PT)");
+        perror ("error on the down operation for semaphore access (PT)");
         exit (EXIT_FAILURE);
     }
 
     /* insert your code here */
     sh->fSt.st.chefStat = COOK;
+    sh->fSt.foodOrder = 0;
     saveState(nFic,&sh->fSt);
-
+    /*                        */
 
     if (semUp (semgid, sh->mutex) == -1) {                                                      /* exit critical region */
         perror ("error on the up operation for semaphore access (PT)");
@@ -148,15 +150,15 @@ static void processOrder ()
     usleep((unsigned int) floor ((MAXCOOK * random ()) / RAND_MAX + 100.0));
 
     if (semDown (semgid, sh->mutex) == -1) {                                                      /* enter critical region */
-        perror ("error on the up operation for semaphore access (PT)");
+        perror ("error on the down operation for semaphore access (PT)");
         exit (EXIT_FAILURE);
     }
 
     /* insert your code here */
-    sh->fSt.foodReady = 1;
     sh->fSt.st.chefStat = REST;
+    sh->fSt.foodReady = 1;
     saveState(nFic,&sh->fSt);
-
+    /*                        */
 
     if (semUp (semgid, sh->mutex) == -1) {                                                      /* exit critical region */
         perror ("error on the up operation for semaphore access (PT)");
@@ -168,5 +170,6 @@ static void processOrder ()
         perror ("error on the up operation for semaphore access (PT)");
         exit (EXIT_FAILURE);
     }
+    /*                        */
 }
 
