@@ -56,7 +56,7 @@
 #define  INFORM_CHEF        1
 /** \brief waiter takes food to table */
 #define  TAKE_TO_TABLE      2
-/** \brief waiter reiceives payment */
+/** \brief waiter receives payment */
 #define  RECEIVE_PAYMENT    3
 
 #endif /* PROBCONST_H_ */
