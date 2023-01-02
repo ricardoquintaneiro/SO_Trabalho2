@@ -173,16 +173,15 @@ static bool waitFriends(int id)
         first = true;
         sh->fSt.tableFirst = id;
     }
-    if (sh->fSt.tableClients == TABLESIZE)
-    {
+    if (sh->fSt.tableClients == TABLESIZE) {
         sh->fSt.tableLast = id;
         if (semUp(semgid, sh->friendsArrived) == -1) {
             perror("error on the up operation for semaphore access (CT)");
             exit(EXIT_FAILURE);
         }
     }
-    saveState(nFic,&sh->fSt);
-
+    saveState(nFic, &sh->fSt);
+    /*                      */
 
     if (semUp (semgid, sh->mutex) == -1)                                                      /* exit critical region */
     { perror ("error on the up operation for semaphore access (CT)");
@@ -191,7 +190,7 @@ static bool waitFriends(int id)
 
     /* insert your code here */
     if (semDown(semgid, sh->friendsArrived) == -1) {
-        perror("error on the up operation for semaphore access (CT)");
+        perror("error on the down operation for semaphore access (CT)");
         exit(EXIT_FAILURE);
     }
 
@@ -199,6 +198,7 @@ static bool waitFriends(int id)
         perror("error on the up operation for semaphore access (CT)");
         exit(EXIT_FAILURE);
     }
+    /*                      */
 
     return first;
 }
@@ -225,13 +225,12 @@ static void orderFood (int id)
     sh->fSt.st.clientStat[id] = FOOD_REQUEST;
     sh->fSt.foodRequest = 1;
 
-    if (semUp (semgid, sh->waiterRequest) == -1) {
-        perror ("error on the up operation for semaphore access (CT)");
-        exit (EXIT_FAILURE);
+    if (semUp(semgid, sh->waiterRequest) == -1) {
+        perror("error on the up operation for semaphore access (CT)");
+        exit(EXIT_FAILURE);
     }
-
-    saveState(nFic,&sh->fSt);
-
+    saveState(nFic, &sh->fSt);
+    /*                      */
 
     if (semUp (semgid, sh->mutex) == -1)                                                      /* exit critical region */
     { perror ("error on the up operation for semaphore access (CT)");
@@ -239,12 +238,11 @@ static void orderFood (int id)
     }
 
     /* insert your code here */
-
     if (semDown (semgid, sh->requestReceived) == -1) {
         perror ("error on the down operation for semaphore access (CT)");
         exit (EXIT_FAILURE);
     }
-
+    /*                      */
 
 }
 
